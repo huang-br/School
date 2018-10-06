@@ -1,1 +1,1 @@
-# School
+Repository for all school work.
