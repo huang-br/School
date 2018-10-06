@@ -1,0 +1,34 @@
+1.	The way I decided the order of my testing was to first look through the spec
+	and find what was the easiest to code. The tests that I created for each
+	version were made to test the current version of my program. This was a
+	small mistake on my part, and I should have thought ahead. Because of the
+	way I created my tests some of the later versions of my program could not
+	pass pervios tests. I would have to later tweak the tests to make sure all
+	versions could pass the approperate tests. This ultimately breaks TDD but
+	after a few blunders of the tests I tried to future proof my tests.
+	
+	If I was to change the order of my tests I think my program would change, but
+	not significantly. A lot of the features listed in the spec were mostly
+	independant, so each of them could be created without heavily affecting other
+	portions of code. The main feature that is important to all parts of the code
+	would be the input and appending the shifts of the sentences
+	
+2.	For this problem I think that test driven development works well. Since many
+	portions of the code are independant from each other, tests are easier to
+	create. Although a novice at TDD could still make mistakes by not thinking
+	about future features that may affect the current version of tests. I made
+	this exact mistake and made my tests specific to the current feature I was
+	working on so sometimes my new versions would fail old tests.
+
+	Programming using TDD is very useful when the programmer has good hindsight
+	and is able to think about how the program will behave in the future. TDD is
+	strong because it should solidify each feature with a test. This creates a
+	program where bugs are easier to catch. Having each all the previous features
+	tested means that any bugs that would appear should be in the current version
+	of the program. TDD can also be very slow if the program is very large. It can
+	also be very difficult if there are alot of features that may interact with each
+	other. I think TDD really encourages programs with independant features that
+	interact at a minimal amount. If many of the programs functions work with each
+	other, than I think that programming using TDD would be very difficult. Because
+	the functions interact with each other, there potentially very many different 
+	things to keep track of.

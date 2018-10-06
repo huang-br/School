@@ -1,0 +1,2 @@
+The current time is 12:01AM
+

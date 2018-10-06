@@ -1,0 +1,33 @@
+#ifndef BOARD_HPP
+#define BOARD_CPP
+
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class Board
+{
+	public:
+		//enum definition
+		enum State
+		{
+			X_WON;
+			O_WON;
+			DRAW;
+			UNFINISHED;
+		}
+		//Defualt Constructor
+		Board();
+		//Destructor
+		~Board();
+		//Functions
+		bool makeMove();
+		State gameState();
+		void print();
+	private:
+		char board[3][3];
+};
+
+
+#endif

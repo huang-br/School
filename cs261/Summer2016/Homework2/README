@@ -1,0 +1,141 @@
+CS 261
+SUMMER 2016
+
+ASSIGNMENT 2 - Sorting
+
+----------------
+| Introduction |
+----------------
+
+This assignment asks you to implement some well-known sorting algorithms and 
+is also meant to further familiarize you with C and Unix.
+
+Specifically, you will implement Bubble Sort, Shell Sort and Quick Sort. The
+details of these algorithms can be found in Chapter 4 of the course notes.
+
+An implementation of Merge Sort has been provided for you as an example of
+expected sorting behavior. It is Merge Sort's behavior that your code will
+be tested against.
+
+----------------
+| Instructions |
+----------------
+
+There are many source files included with this assignment. You are to
+fill in the sorting functions in the following files:
+	bubble_sort.c
+	shell_sort.c
+	quick_sort.c
+For any of these sorting algorithms you may want write additional functions
+of your own. If you do, you must put the corresponding function prototypes in
+the appropriate header files.
+
+For those unfamiliar with structs, pointers and memory allocation in C, this
+assignment will ease you into those concepts. You should not have to allocate
+any memory of your own to complete this assignment, but you can see examples
+of it in the provided test code. You will have to understand how to interact
+with pointers and structs; Lectures and other course materials will cover how
+to do this.
+
+To test your code, see the Provided Tools section.
+
+When you have finished these functions, complete the Written Portion
+instructions (below). When you are done with everything, tar or zip your copy
+of the files:
+	bubble_sort.c		bubble_sort.h
+	shell_sort.c		shell_sort.h
+	quick_sort.c		quick_sort.h
+and turn this in on Canvas. YOU WILL LOSE POINTS IF YOU TURN IN MORE OR LESS
+THAN EXACTLY THESE FILES. Turn in the headers even if you did not change them.
+
+We will compile and test your code on flip.engr.oregonstate.edu; If you
+complete the assignment in another Linux environment it will PROBABLY behave
+the same on flip, but it is your responsibility to double check this.
+
+-------------------
+| Written Portion |
+-------------------
+
+In comments in "bubble_sort.c" answer the following questions:
+
+* 1)	What is the best-case runtime complexity of Bubble Sort?
+		Of Insertion Sort?
+
+* 2)	If you implemented Shell Sort to only ever use a gap size of 1, what
+		other sorting algorithm would this be identical to?
+
+* 3)	What is the memory complexity of Merge Sort? Explain your reasoning.
+
+* 4)	Imagine you changed the Merge Sort algorithm to divide the data into
+		four parts instead of just two. What would the runtime complexity be
+		in this case? Explain your reasoning.	
+
+There are correct answers to these questions and we expect you to find them.
+Discussing these questions on the Canvas Discussion Board is allowed, but the
+instructor and the TA will not participate in these discussions.
+
+You are asked to "explain your reasoning" largely so we can see that you put
+thought into your answers and that you understand why your answer is correct.
+It also gives us an opportunity to give you partial credit for wrong answers.
+We are not, however, looking for hard mathematical proofs of your answers,
+just intuition.
+
+------------------
+| Provided Tools |
+------------------
+
+Included is a Makefile with many targets. This Makefile specifies how we will
+compile your code. Use it to make sure your code compiles! Code that does not
+compile receives a score of zero.
+
+This Makefile has many targets. Invoking 'make' with different arguments will
+build different programs. The included source code is meant to give you
+several ways to test your code.
+
+make
+	or
+make all
+		Will attempt to build everything.
+
+make clean
+		Will delete all compiled objects.
+
+make bubble_sort_test
+		Will compile the program 'bubble_sort_test' which you can use to test
+		your implementation of Bubble Sort. Offering a number as the first
+		argument will specify how many elements to sort. If your code is not
+		working correctly, the program will try to figure out why.
+
+make shell_sort_test
+		Will compile the program 'shell_sort_test' which you can use to test
+		your implementation of Shell Sort. Offering a number as the first
+		argument will specify how many elements to sort. If your code is not
+		working correctly, the program will try to figure out why.
+
+make quick_sort_test
+		Will compile the program 'quick_sort_test' which you can use to test
+		your implementation of Quick Sort. Offering a number as the first
+		argument will specify how many elements to sort. If your code is not
+		working correctly, the program will try to figure out why.
+
+make merge_sort_test
+		Will compile the program 'merge_sort_test' which you can use to test
+		MY implementation of Merge Sort. Offering a number as the first
+		argument will specify how many elements to sort. You can use this
+		program to observe expected behavior and to compare the runtime of
+		the other algorithms against Merge Sort if you are curious.
+
+make full_test
+		Will compile the program 'full_test' which is the code we will use to
+		grade your assignment. The grade you actually get may differ from the
+		score reported by this program for several reasons such as:
+			1) We increase your score after reviewing your code and awarding
+				partial credit.
+			2) We decrease your score after reviewing your code and observing
+				that you did not implement the algorithms your were asked to
+				implement, but instead wrote something meant to defeat our
+				tests.
+		It is advised that you complete all three algorithms before compiling
+		this program. The other test programs are provided so you can test
+		each algorithm individually as you work on them.
+

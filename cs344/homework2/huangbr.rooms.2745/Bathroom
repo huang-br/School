@@ -1,0 +1,8 @@
+This is a test
+ROOM NAME:Bathroom
+CONNECTIONS: 1: Hallway
+CONNECTIONS: 2: Greenhouse
+CONNECTIONS: 3: DiningHall
+CONNECTIONS: 4: Courtyard
+CONNECTIONS: 5: Storage
+ROOM TYPE: MID_ROOM

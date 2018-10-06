@@ -1,0 +1,205 @@
+CS 261
+SUMMER 2016
+
+ASSIGNMENT 3 - Stack and Deque
+
+----------------
+| Introduction |
+----------------
+
+In this assignment you will implement a Stack and a Deque (or Dequeue). You
+will also implement a function that uses a Stack to verify if the parentheses
+in a text file are balanced.
+
+You are asked to used an array as the underlying data structure for the Stack,
+and linked nodes as the underlying data structure for the Deque. In each case,
+the opposing data structure is implemented as an example; that is, a Stack
+built from linked nodes and a Deque built over an array have been provided to
+guide your development.
+
+In short, you are to implement the functions in the folowing files:
+
+	array_stack.c	linked_deque.c	check_next_paren.c
+
+However there are many many included files, so read carefully to understand
+how to navigate the project.
+
+---------------------------
+| Guide to Provided Files |
+---------------------------
+
+stack.h, linked_stack.c, array_stack.c :
+	stack.h is used as a common header for both stack implementations.
+	Think of stack.h as the interface that is implemented by both .c files.
+	You are asked to implement array_stack.c; refer to linked_stack.c to
+	understand expected behavior of the Stack and to array_deque.c for clues
+	about using an array to exhibit such behavior.
+
+deque.h, linked_deque.c, array_deque.c :
+	As above, deque.h is used as a common header for both deque
+	implementations. You are asked to implement linked_deque.c; refer to
+	array_deque.c to understand expected behavior of the Deque and to
+	linked_stack.c for clues about using linked nodes to exhibit such
+	behavior.
+
+test_{stack|deque}.{c|h} :
+	These source files, (and accompanying headers), define a set of unit tests
+	meant to test a stack/deque implementation for correct behavior. You are
+	not expected to modify any of these files.
+	See the section on testing your code for more information.
+
+unit_test.{c|h} :
+	These source files define the unit testing modules that we will use to
+	write test scripts for your code on this and future assignments. You are
+	not expected to modify any of these files. NOTE: I normally say that
+	provided source files are also meant as example C code for your reference
+	but the macros defined in unit_test.h are written in a way that would
+	not be considered best practices. The purpose of this module is solely to
+	be a convenience for writing test scripts, not for general purpose coding.
+
+paren_checker.{c|h} check_next_paren.{c|h} :
+	These source files define a program that reads text files and checks if
+	their parentheses are balanced. The sets of parentheses in question are:
+
+		()	{}	[]
+
+	Balanced means not only that all open parentheses are closed by the end of
+	the file, but that each close-paren closes the most recent open-paren.
+	For example:
+
+		(){}	({([])})	({})[]
+
+	are balanced, and:
+
+		(){		({([)})]	){}([]
+
+	are not.
+
+	The work of opening a file and picking out the parentheses characters is
+	handled for you in paren_checker.c. You are asked to implement
+	check_next_paren.c which contains a function that is passed a pointer to
+	a stack and a char; you may assume that only parenthetical chars are
+	passed to this function, that chars are fed to the function in the order
+	they appear in the text, and that the stack pointer always points to the
+	same stack. Your task is to use the stack to keep track of whether or not
+	the stream of parentheses is still balanced.
+
+README :
+	You are reading it right now.
+
+Makefile :
+	The Makefile defines how modules should be compiled and linked. See the
+	section on testing your code for more info on the test programs this
+	compiles.
+
+test_paren_checker.sh :
+	This is a bash script meant to test your paren-balancing function. See
+	the section on testing your code for more details.
+
+---------------------
+| Testing Your Code |
+---------------------
+
+Potential executable targets in the Makefile -
+
+test_linked_stack :
+	This program runs the stack unit tests on the linked node implementation of
+	the stack. This implementation is already finished and so this program
+	is meant to show you what expected output looks like.
+
+test_array_stack :
+	This program runs the stack unit tests on the array implementation of
+	the stack, which you are to write. The score out of thrity mirrors how
+	your code will graded.
+
+test_array_deque :
+	This program runs the deque unit tests on the array implementation of
+	the deque. This implementation is already finished and so this program
+	is meant to show you what expected output looks like.
+
+test_linked_deque :
+	This program runs the deque unit tests on the linked node implementation of
+	the deque, which you are to write. The score out of thrity mirrors how
+	your code will graded.
+
+linked_paren_checker :
+	This is the paren checker program using the linked node implementation of
+	the stack. This is the program that will be evaluated; the idea is that
+	you can succeed at using a stack without succeeding at implementing it.
+
+array_paren_checker :
+	This is the paren checker program using the array implementation of the
+	stack. This is provided as a curiosity, but has no bearing on your final
+	grade.
+
+Additionally there is the bash script test_paren_checker.sh -
+
+test_paren_checker.sh :
+	When your paren checking function is finished, this script will test the
+	final program. This is exactly the grading script that will be used to
+	evaluate your code.
+
+Compile and use test_array_stack, test_linked_deque and test_paren_checker to
+evaluate your code. The unit tests used to grade your code will be slightly
+different as a safguard against cheating, but in general, your reported
+score should match your final grade.
+
+-----------
+| Grading |
+-----------
+
+30 points possible from test_array_stack
+30 points possible from test_linked_deque
+15 points possible from test_paren_checker
+25 points possible from Written Questions
+
+EXTRA CREDIT:
+Up to ten points are possible if you can make sure your code does not cause
+memory leaks. This will be a requirement on future assignments. To check any
+of the above binaries for memory leaks use the command:
+
+valgrind [name_of_program]
+
+for each of test_array_stack and test_linked_deque you will recieve 5 points
+if the program completes with no memory leaks. To prevent memory leaks you
+must make sure that all allocated memory is freed before the end of the
+program.
+
+----------------
+| Instructions |
+----------------
+
+Implement all functions/structs in the source files:
+
+	array_stack.c	linked_deque.c	check_next_paren.c
+
+In a fourth file provide your answers to the written questions. This file may
+be plain text, pdf, doc, or even an image scan of handwritten answers.
+
+Zip or tar all four files and submit them on Canvas.
+
+---------------------
+| Written Questions |
+---------------------
+
+1. a) Without adding additional fields, describe (in words or in pseudo-code)
+	how you might write a function to compute the size of the stack
+	implemented in linked_stack.c
+   b) If n is the size of the stack, what is the run-time complexity of this
+   	operation?
+2. a) If you were allowed to add fields to the stack implemented in
+	linked_stack.c, how might you write this function? What other functions
+	would you have to change to make your idea work?
+   b) What would the run-time complexity of the size function be now?
+   	Would the run-time complexity of any other functions you had to change
+	remain the same? Why?
+3. a) Without adding additional fields, describe (in words of pseudo-code)
+	how you might write a function to compute the size of the stack you
+	implemented in array_stack.c?
+   b) What is the run-time complexity of this operation?
+4. Describe how you might use the operations of a deque to implement the
+	functionality of a stack.
+5. Imagine you implemented a deque using ONLY nodes (no outside container
+	struct). How might you keep track of the front AND the back?
+	(Ask for clarification if you need it; this question will be graded
+	 generously, however).

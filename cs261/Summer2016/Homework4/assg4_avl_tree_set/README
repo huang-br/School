@@ -1,0 +1,280 @@
+CS 261
+SUMMER 2016
+
+ASSIGNMENT 4 - AVL Tree Set
+
+----------------
+| Introduction |
+----------------
+
+In this assignment you will implement a Set ADT with a binary search tree
+(BST) as the underlying data structure. The BST is expected to use the AVL
+algorithm to keep itself well-balanced.
+
+In addition to the typical Bag/Set ADT functions, you are also expected to
+implement some standard Set operations that operate on two Sets at once.
+
+In addition to the typical tree functions, you are also expected to work
+through some additional functionality that allows accessing the tree by
+index, and generating various traversals.
+
+More specifically, you are to implement functions in the folowing files:
+
+	tree.c	set.c	iterator.c
+
+Some functions in these files have been written or partially written for you.
+Depending on your strategy for completing this assignment, you may want to
+alter, rewrite or ignore some of these functions; greater detail can be found
+in the respective source files. You will need to read all documentation in
+these source files to fully understand assignment requirements.
+
+Unlike previous assignments there is no written portion; 90 of 100 points are
+derived directly from the provided unit tests and the remaining 10 are related
+to your ability to avoid memory leaks.
+
+You are to zip or tar your copy of the three .c files listed above AND NOTHING
+ELSE and submit ONE TAR via Canvas. Failure to do this will result in a 10 point
+deduction.
+
+----------------------
+| Partial Completion |
+----------------------
+
+You may find it difficult to complete all parts of this assignment. It is
+expected that not all students will be able to complete everything. The
+unit tests and modules are structured so that you might get as many points
+as you can without finishing certain portions of the assignment.
+
+Broadly speaking, it is assumed that you might fall into one of three levels
+of completion.
+
+1) Trees prove too difficult, but you can approximate a lot of functionality
+by using the nodes to make a linked list instead.
+	If you fall into this category you will likely get roughly 50 to 70 points
+	depending on how well you implement the list.
+
+2) AVL algorithm proves too difficult, but you can otherwise complete the
+assignment.
+	If you fall into this category you can still get about 85/100 points;
+	only one unit test verifies that you implemented the balancing algorithm
+	and it is worth 15 points. Without the balancing algorithm you should
+	still be able to get full credit on the other unit tests.
+
+3) You are able to finish all parts of the assignment.
+	All 100 points are available to you.
+
+The remainder of this README will speak to these three "levels" where
+appropriate to help guide you to getting the best grade you can.
+
+---------------------------
+| Guide to Provided Files |
+---------------------------
+
+README :
+	You are reading it right now.
+
+Makefile :
+	The Makefile defines how modules should be compiled and linked. There are
+	five unit tests associated with this assignment that this Makefile will
+	compile. For more information on them, see the section on unit tests.
+
+unit_tests directory :
+	The source files related to unit tests are here. The unit tests are
+	described in the unit tests section of this file.
+
+set.h, set.c :
+	Some of the basic functionality has already been implemented. This is
+	mostly to demonstrate how the tree functions are used from the outside.
+	You will need to do some additional work to the add and remove functions
+	to get them working correctly. The real work left for you in this module
+	is to implement the larger set operations: union, intersection,
+	difference and subset.
+
+tree.h, tree.c :
+	The tree module comprises the bulk of the assignment. No functions are
+	filled in. The functions are divided into sections:
+		Memory Management - namely, the constructor for new tree nodes and the
+			function to free all nodes in a tree.
+		Storage and Access - Add, Remove, Contains functions.
+		Size and Index - Functions for accessing elements by index.
+		AVL Balancing Functions - Functions meant to assist in keeping the
+			tree well-balanced.
+
+iterator.h, iterator.c :
+	Most of this module is complete. For a complete description of the module
+	see the source files directly. Your contribution to this module is to
+	implement three traversal functions to allow access to the pre-,post- and
+	inorder traversals of a tree.
+
+--------------------------
+| Unit Tests and Grading |
+--------------------------
+
+*) Unit Tests
+
+There are five unit tests that should compile in the unit_tests directory when
+the Makefile is used. The score output by these tests are your grade for that
+portion.
+
+tree_test_basic.exe		30 pts
+tree_test_indexing.exe	10 pts
+tree_test_avl.exe		15 pts
+traversal_test.exe		15 pts
+set_ops_test.exe		20 pts
+------------------------------
+	SUBTOTAL			90 pts
+
+*) Memory Leaks
+
+In addition, 10 points are reserved for memory managment. Each unit test will
+be run as follows:
+
+valgrind [name of unit test]
+
+For each unit test that valgrind reports "no memory leaks possible" you will
+receive two points, for a total of 10 across all unit tests.
+
+All of the needed "free" functions have been written except for "free_tree" in
+tree.c. Catching most memory leaks will be a matter of implementing
+this function correctly and for remembering to free nodes when you remove them
+from the tree. (If you use iterators in your set operations you will need
+to remember to call free_iterator as appropriate).
+
+This yields the final grading break out:
+
+Unit Tests				90 pts
+Memory Leaks			10 pts
+------------------------------
+	TOTAL				100pts
+
+*) Unit Test Details
+
+tree_test_basic : 30 pts
+	This unit test checks the functionality of the functions
+		tree_add
+		tree_remove
+		tree_contains
+		tree_size
+	You should be able to get 30/30 on this test without
+	implementing any of the more difficult AVL balance functions.
+	Even if you use the tree nodes to make a linked list instead
+	of a true tree you will be able to get most of the points but
+	will fail some of the size checks.
+
+tree_test_indexing : 10 pts
+	This unit test verifies that you can retrieve elements by
+	index. Indexing starts at zero, and elements are assumed to be
+	kept in sorted order. Even if you make a linked list instead of
+	a tree, you should be able to pass this test as long as you
+	keep elements in sorted order.
+
+	With a true tree impementation, solving the indexing problem
+	might prove elusive.
+
+tree_test_avl : 15 pts
+	This unit test verifies that you are keeping the height of your
+	tree low. You will not be able to pass this test at all with a
+	linked list.
+
+traversal_test : 15 pts
+	This unit test verifies that you can produce the pre-, post- and inorder
+	traversals of your tree. With a linked list in sorted order you will
+	be able to provide the correct inorder traversal for 5 of the 15 points,
+	but the other two traversals will prove impossible without a true tree
+	data structure.
+
+set_ops_test : 20 pts
+	This unit test comprises the "application" portion of the assignment and
+	verifies that you can finish off the add and remove functions and figure
+	out how to write the two-set operations. This test is fully passable
+	with a linked list instead of a tree.
+
+-----------------------
+| Hints & Suggestions |
+-----------------------
+
+1) Strategy for completing the assignment:
+
+It is suggested you complete this project in stages.
+
+Stage I - Tree Basics
+
+	Implement new_tree_node first, then work on making add/remove/contains.
+	You can implement the tree_size function so that it iteratively counts
+	nodes, or you can figure out how to make sure your nodes correctly keep
+	track of their own size as the add/remove/contains functions run.
+
+	Get the above working so that you can pass tree_test_basic with 30 points.
+	If you make a linked list instead, you will be able to get 26/30 points max.
+	If you have too much difficult getting tree_size to return the correct value
+	you can move on and try again later.
+
+	Also try to finish the free_tree function and see if you can't have this
+	first test finish without memory leaks. If you can get this done now it
+	will be very easy to accomplish this on the other tests. Come back to this
+	later if you need to.
+
+Stage II - Traversals
+
+	It is suggested you try to pass the traversal_test next. You do not need
+	to have tree_size working at all to get this right. iterator.c is mostly
+	complete; you will only need to fill in the functions add_preorder,
+	add_inorder and add_postorder to pass this test (Assuming you have
+	already finished Stage I).
+	If you are using a linked list, you will only be able to pass the inorder
+	traversal test.
+
+Stage III - Set Ops
+
+	If you have any of the traversals working correctly, you can use any of
+	them to finish off the functions in set.c. Work on this test until you
+	get all 20 points.
+	You can get all 20 points even with a linked list, assuming you got one
+	traversal from Stage II working.
+
+Stage IV - Indexing
+
+	As preparation for the AVL algorithm, try to master the simpler problem
+	of finding elements by index by passing the tree_test_indexing unit test.
+	Functions tree_size and tree_gat_at_index are being tested here. Even
+	with a linked list, you can get all 10 points from this test.
+
+	It is suggested, though not required, that you figure out how to
+	correctly propagate subtree sizes in your add/remove/contains functions.
+
+Stage V - AVL
+
+	Finally, attempt the final 15 points by learning to keep your tree
+	balanced. You do not need to use the functions:
+		rebalance
+		rotate_left
+		rotate_right
+		left_is_heavy
+		right_is_heavy
+	They are not explicitly tested (tree_height is). However, those functions
+	are provided as a guide to how you might organize your code to solve this
+	difficult problem.
+
+	You cannot pass this test with a linked list.
+
+2) General Hints and Notes
+
+*) Read the documentation and examine the code for ALL functions, even those
+you don't have to write, as they might provide useful hints.
+
+*) You are allowed to change existing code in the files you turn in. Depending
+on how you want accomplish certain tasks you might find it useful to do so.
+(It isn't necessary, however).
+
+*) Note that the tree_node struct has a field for storing the size and height
+of tree rooted at that node. The expected behavior of tree_size and
+tree_height are to just report those fields, but you may find it difficult to
+keep all the nodes in your tree correctly up to date in an efficient manner.
+You are allowed to implement iterative versions of these two functions
+instead; however this will slow down the performance of your tree by a large
+margin. You can still get full credit if you do this, but expect some of the
+unit tests, especially the AVL test, to run much slower.
+
+Good Luck!
+
+Good Luck!

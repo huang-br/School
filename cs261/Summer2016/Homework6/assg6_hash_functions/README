@@ -1,0 +1,156 @@
+CS 261
+SUMMER 2016
+
+ASSIGNMENT 6 - Hash Functions
+
+----------------
+| Introduction |
+----------------
+
+Due to time constraints and to allow you to focus on the Final, the code
+portion of this assignment is very short. The majority of points will be
+derived from wirtten questions.
+
+In this assignment you will implement three hash functions that take a
+string and return an integer.
+
+In short, you are to implement the functions in the folowing file:
+
+	hash_functions.c
+
+There is one unit test:
+
+	hash_fn_test.exe	30 points
+
+There are no points associated with avoiding memory leaks.
+
+There is a written portion worth 70 points. You are encouraged to finish the
+hash functions first before attempting the questions as many questions refer
+to the functions directly.
+
+You may write your answers to these questions in any common file format you
+wish. It would be PREFERRED that you use plain text or pdf (in that order),
+but doc or even scans of handwritten answers are still acceptable.
+
+	unit tests		30 points
+	written portion	70 points
+	-------------------------
+	Total			100 points
+
+You are to zip or tar your copy of the hash_functions.c file with your written
+answers and submit this ONE FILE on Canvas.
+
+---------------------------
+| Guide to Provided Files |
+---------------------------
+
+README :
+	You are reading it right now.
+
+Makefile :
+	The Makefile defines how modules should be compiled and linked.
+
+hash_functions.h, hash_functions.c :
+	This module comprises the entire coding assignment. You are to implement
+	three simple hash functions. See hash_functions.c for details.
+
+unit_test.h, unit_test.c:
+	This is the module with convenience code for unit testing.
+
+hash_fn_test.h, hash_fn_test.c:
+	This is the code for the unit test for your functions.
+
+--------------------------
+| Unit Tests and Grading |
+--------------------------
+
+*) Unit Test Details
+
+hash_fn_test.exe : 30 pts
+	This unit test checks the functionality of the functions
+		hash_by_length
+		hash_by_sum
+		hash_by_shifted_sum
+	Various strings are fed to the functions and it is verified that they are
+	returning the correct value.
+
+-------------------
+| C-style Strings |
+-------------------
+
+Even though this assignment is short and relatively easy, this may be your
+first exposure to C-style strings. In C, strings are arrays of chars. There
+are a number of standard library functions that help make using char*
+variables easier.
+
+For this assignment, the only function you NEED is strlen, which will give
+you the length of the string. You are encouraged to look up how to use
+C-Style strings on your own.
+
+You may notice that your functions take const char* variables. In this case,
+the const modifier is preventing you from modifying the strings. The modifier
+is there mostly to make understanding the unit tests easier. (You do not need
+to modify the strings anyway).
+
+---------------------
+| Written Questions |
+---------------------
+
+/- Section 1 -/
+/-  Hashing  -/
+/- 45 points -/
+
+1. (10 points)
+	a) Provide a string that would produce the same hash value as the string
+		"waffles" if you were using the hash_by_length function.
+	b) Provide a string that would produce the same hash value as the string
+		"rope" if you were using the hash_by_sum function.
+
+2. (20 points)
+	Imagine you had a hash table of size 1000 and you were using the
+	hash_by_length to generate hash values. Assume the strings you were
+	storing in the table were all single English words, and that you had
+	already inserted some number of elements into the table.
+
+	a) If this was an open address hash table and there was an element
+		at index 999 (the last spot in the table) what claims would
+		you make about the load factor of the table. Why?
+
+	b) If this was a chaining hash table, what would probably be true
+		of the space at index 999? Why?
+
+	c) If you were using the hash_by_shifted_sum function instead of
+		hash_by_length, would you make the same claims? Why?
+
+3. (10 points)
+	When you resize a hash table, why is it a good idea to choose a prime
+	number as the new size?
+
+4. (5 points)
+	Explain how the folding strategy of concatentation (See the Maps and
+	Hashing slides) is similar to the strategy of shifting and summing.
+
+/- Section 2 -/
+/-  Graphs   -/
+/- 30 points -/
+
+For the below questions, assume V is the number vertices in a graph, and E is
+the number of edges. Assume self-edges do not exist.
+
+1. (5 points)
+	Can a tree have V+2 edges?
+
+2. (5 points)
+	What is the maximum number of edges an undirected graph with 20 vertices
+	can have?
+
+3. (5 points)
+	Is an Euler Tour of a tree an example of Depth First Search or Breadth
+	First Search?
+
+4. (10 points)
+	Can a directed graph without cycles be strongly connected? Why or why not?
+
+5. (5 points)
+	Under what conditions might you prefer to use and edge list over an adjacency
+	matrix? Explain your reasoning.

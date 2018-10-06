@@ -1,0 +1,6 @@
+This is a test
+ROOM NAME:Library
+CONNECTIONS: 1: Dormitory
+CONNECTIONS: 2: DiningHall
+CONNECTIONS: 3: Greenhouse
+ROOM TYPE: MID_ROOM

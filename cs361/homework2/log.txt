@@ -1,0 +1,12 @@
+Not modified, Ulysseus:
+	Regular: 8.80 seconds
+	periodsToBreaks: 15.15 minutes.
+	periodsToBreaks and listPairs: 25.971 minutes.
+
+Not modified, Chesterton
+	PeriodsToBreaks and listPairs: 282.18 seconds
+
+fastkwic, Chesterton
+	periodsToBreaks and ListPairs: 251.04 seconds
+				   v2: 242.56
+				   v3: 240.39	

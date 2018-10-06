@@ -1,0 +1,7 @@
+#!/bin/bash
+
+gcc -o encodeServer otp_enc_d.c
+gcc -o encode otp_enc.c
+gcc -o decodeServer otp_dec_d.c
+gcc -o decode otp_dec.c
+gcc -o keygen keygen.c

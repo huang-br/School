@@ -1,0 +1,1 @@
+HMAC-SHA256(secret1.txt)= 1b9b665874df1d8c843bd48149a59fbd2e8b6cff6b349aac9a6e15d4dda18577

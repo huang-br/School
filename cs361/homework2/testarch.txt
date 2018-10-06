@@ -1,0 +1,11 @@
+The way I changed kwic to make it more testable was to make the program do all of its work inside functions. For each step of my testkwic
+a function is called to do the work instead of doing it in the function the information was made in. The whole text file is simply passed
+from function to function to finally get the desired result. My idea here was that if someone wanted to test a different way of doing
+pairs or shifting they would simply just switch out the function. This would be a good way of testing differet methods to get the same
+result, as long as the return data is of the same type.
+
+I stepping and printing feature to make my program more testable. This feature requires human input to take a step in the program.
+This feature also prints each result and then clears when it moves on to the next result for easier readability. Along with human
+verification I have also added assert statements after each step to make sure that each step has completed successfully and did not
+return garbage. I added these features to make the program easier to control and observe the programs behavior. Printing each step
+lets the user see if the function they implemented is doing what it is suppose to.

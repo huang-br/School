@@ -1,0 +1,10 @@
+Training v Training
+Training v Training Percentage: 0.785571142285
+Data set size 499
+Number Correct 392
+
+Training v Test
+Training v Testing Percentage: 0.798792756539
+Data set size 497
+Number Correct 397
+

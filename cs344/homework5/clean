@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -r encode
+rm -r encodeServer
+rm -r decode
+rm -r decodeServer
+rm -r keygen
+rm -r ciphertext
+rm -r decodedtext

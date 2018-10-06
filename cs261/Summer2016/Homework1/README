@@ -1,0 +1,114 @@
+CS 261
+SUMMER 2016
+
+ASSIGNMENT 1 - Fibonacci
+
+----------------
+| Introduction |
+----------------
+
+This is a simple assignment meant to familiarize you with how assignments
+will be handled in this course.
+
+The programming assignments are in C and meant to be tested in a Linux
+environment on the department's servers. However, the purpose of this course
+is not to evaluate how well you handle things like file IO or bash scripting
+or Makefiles or other system-level programming tasks, so for each assignment
+a lot of code will be provided and you will be asked only to fill in certain
+files. Use the provided code as an opportunity to become more familiar with C,
+Unix, bash scripting and Makefiles as future courses will demand more of you
+in these areas.
+
+For this first assignment you are to implement two functions that behave
+identically from the outside. Each function takes an integer (n) as an
+argument and returns the nth fibonacci number.
+
+----------------
+| Instructions |
+----------------
+
+You are to fill in the functions in the file "assg1_fibonacci.c"; these
+functions are prototyped in "assg1_fibonacci.h"
+
+These functions are to behave identically from the outside, but should
+differ in their implementation.
+
+iterative_fibonacci - compute the nth fibonacci number iteratively.
+RULES: 	Your code must not make ANY function or macro calls, even to
+		itself.
+
+recursive_fibonacci - compute the nth fibonacci number recursively.
+RULES:	Your code must not make use of ANY loops, nor is it
+		allowed to make any function or macro calls EXCEPT to itself.
+
+Note that the return type of these functions is "unsigned long"; this means
+that the return value is a non-negative 64-bit integer. The fibonacci
+sequence grows very fast and this allows us to express as many of them
+as we can. You are NOT responsible for fibonacci numbers that can't fit into
+an unsigned long.
+
+To test your code, see the Provided Tools section.
+
+When you have finished these functions, complete the Written Portion
+instructions (below). When you are done with everything, turn in
+your copy of "assg1_fibonacci.c" on Canvas. YOU WILL LOSE POINTS IF
+YOU TURN IN MORE THAN ONE FILE.
+
+-------------------
+| Written Portion |
+-------------------
+
+In comments in "assg1_fibonacci.c" answer the following question:
+
+* What do you think the Big-O complexity of the fibonacci sequence is? Why?
+
+For this assignment we do not care for correctness; just provide us with
+your intuition. Future assignments will have similar written portions as this
+one but correctness will matter.
+
+------------------
+| Provided Tools |
+------------------
+
+Included is a Makefile. If you run the unix command "make" it will compile
+your code with the included code and produce the executable binary "fib"
+
+This Makefile specifies how we will compile your code. Use it to make sure
+your code compiles! Code that does not compile receives a score of zero.
+
+The provided code fills out the command-line tool "fib" which you can use
+as an example of how to accomplish certain tasks in C.
+
+You may use "fib" to test your code; we will be using it to evaluate the
+correctness of your code.
+
+The usage of fib is that you may give it any number of integers as
+command-line arguments. It will also accept filenames as arguments and read
+integers from that file. fib will then run each of your functions on those
+numbers and time how long they take. You should notice that it does not take
+very large values of n before the recursive function gets very slow.
+
+"fibs.txt" is an example text file that you may feed to fib. "example.txt"
+contains the output from running "$ fib fibs.txt" which you can use to
+compare with your own output. (The actual running times will not match).
+
+We will compile and test your code on flip.engr.oregonstate.edu; If you
+complete the assignment in another Linux environment it will PROBABLY behave
+the same on flip, but it is your responsibility to double check this.
+
+-------------
+| More Info |
+-------------
+
+If you are unfamilar with the fibonacci sequence, it is a sequence of numbers
+where each element is defined as the sum of the two previous elements. As a
+starting point, we will say that the "zero-th" fibonacci number is 0, and the
+first fibonacci number is 1. By this definition, the first few fibonacci
+numbers are as follows:
+
+fib(n)|  0 |  1 |  1 |  2 |  3 |  5 |  8 | 13 | 21 | 34 | 56 |
+--------------------------------------------------------------
+	n |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 |
+
+For the purposes of this assignment we will say that if your functions are
+given a negative number, they should also return 0.

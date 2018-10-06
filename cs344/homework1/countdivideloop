@@ -1,0 +1,16 @@
+#!/bin/bash
+
+read line
+sum=0
+count=0
+
+for i in $line
+do
+	sum=`expr $sum + $i`
+	count=`expr $count + 1`
+done
+
+mean=`expr $sum / $count`
+echo "sum = $sum"
+echo "count = $count"
+echo "mean = $mean"

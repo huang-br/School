@@ -1,0 +1,134 @@
+CS 261
+SUMMER 2016
+
+ASSIGNMENT 5 - Array Heaps
+
+----------------
+| Introduction |
+----------------
+
+In this assignment you will implement a Priority Queue with and Array Heap
+implementation. You will also implement the inplace heapsort algorithm.
+
+In short, you are to implement the functions in the folowing file:
+
+	p_queue.c
+
+There are three unit tests:
+
+	basic_test.exe	25 points
+	large_test.exe	15 points
+	sort_test.exe	15 points
+	-------------------------
+	Subtotal		55 points
+
+There are 5 points associated with avoiding memory leaks.
+There is a written portion worth 40 points. You may write your answers
+to these questions in any common file format you wish. It would be PREFERRED
+that you use plain text or pdf (in that order), but doc or even scans of
+handwritten answers are still acceptable.
+
+	unit tests		55 points
+	memory leaks	5 points
+	written portion	40 points
+	-------------------------
+	Total			100 points
+
+You are to zip or tar your copy of the p_queue.c file with your written
+answers and submit this ONE FILE on Canvas.
+
+---------------------------
+| Guide to Provided Files |
+---------------------------
+
+README :
+	You are reading it right now.
+
+Makefile :
+	The Makefile defines how modules should be compiled and linked. There are
+	five unit tests associated with this assignment that this Makefile will
+	compile. For more information on them, see the section on unit tests.
+
+unit_tests directory :
+	The source files related to unit tests are here. The unit tests are
+	described in the unit tests section of this file.
+
+p_queue.h, p_queue.c :
+	This module comprises the entire coding assignment. You are to implement
+	a priority queue using an array heap. You are also to provide an iterator
+	that uses the cursor paradigm (does not copy the data). You are also
+	to implement inplace heap sort.
+
+
+--------------------------
+| Unit Tests and Grading |
+--------------------------
+
+*) Unit Test Details
+
+basic_test.exe : 25 pts
+	This unit test checks the functionality of the functions
+		new_p_queue
+		free_p_queue
+		is_empty
+		pq_add
+		pq_front
+		pq_remove_front
+	It does not add enough element to trigger resizing the heap array.
+
+large_test.exe : 15 pts
+	This unit test tests the iterator functions
+		get_pq_iterator
+		free_iterator
+		has_next
+		next
+	It adds over a thousand elements to the queues and so will test
+	the heap array resizing.
+
+sort_test : 15 pts
+	Inplace heapsort will be evaluated in the same way the algorithms
+	in assignment 2 were. This test is all or nothing.
+
+*) Memory leaks
+
+Only the large_test.exe will be tested for memory leaks. You will receive 5
+points if there are no leaks found, 0 otherwise.
+
+---------------------
+| Written Questions |
+---------------------
+
+/-Section 1-/
+/-  Trees  -/
+/-20 points-/
+
+1. If a full binary tree had N leaf nodes, how many interior nodes would it
+	have? Why?
+
+2. Use your answer above to explain why it is impossible to have a full
+	binary tree with exactly 6 nodes (total).
+
+3. If a perfect & full binary tree had a height of 5, how many leaf nodes
+	would it have?
+
+4. Provide a name of a tree balancing algorithm other than AVL. (Feel free
+	to search the Internet).
+
+/-Section 2-/
+/-  Heaps  -/
+/-20 points-/
+
+1. The binary heap has a worst-case of O(log n) for add and remove. What
+	property is being enforced in the tree to ensure this?
+
+2. A normal queue observes a FIFO order. If a heap received multiple copies
+	of the same value, would FIFO order be observed among thos values? Why
+	or why not?
+
+3. Imagine you are receiving a stream of values one at a time (as opposed to
+	getting all the values at once in an array). Your task is to track the
+	current median of all the values you've seen so far. In words or in
+	psuedo-code, explain how you might do this with two heaps.
+
+4. In this course we have discussed the binary heap and the skew heap. Provide
+	the name of another kind of heap. (Feel free to search the Internet).

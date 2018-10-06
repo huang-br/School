@@ -1,0 +1,28 @@
+For this assignment I chose to use my testkwic architecture to implement my kwic class. I chose my test
+architecture because the data is just being passed around by functions, so there are alot of modular parts.
+For the kwic class I had to modify my sort function because of list pairs. Since my old function relied on
+the listpairs parameter I had to make a seperate sort function for my index and my pairs. For my addText()
+function I used an empty string created in my __init__() function to store text. Adding text just appends
+whatever text that was added on to the end of the already existing string. The reset function of my class
+just resets the string back to empty as well as reseting the state machine trace back to nothing.
+My index function runs the text through a smaller version of the kwic function and returns the output. 
+My listPairs function reads the string and just creates the list of pairs.
+I decided only calculate my pairs and index when their respective functions have been called. I decided to do
+create my kwic this way because I would only need to run each function once for each call of index or listpairs.
+I would also not have to worry about storing the data in some variable and then appending and then resorting the
+new listpairs or index. Creating my kwic this way was also easier because I did not have to create anything extra.
+I just had to use the functions I created in the previous assignment. I have also added a debugging feature that can
+be used to track if the program is being used correctly. This function is called printStatus() and I used it to keep
+track of how my program works. I also has the eventspec printLog() function incoporated into it, so I am able to see
+if my program is following the state machine diagram that I made for it.
+
+I used the eventspec program to make sure my program was running properly by making sure that it followed the
+state machine diagram that I created for it. I added proper events and transitons before and after the function
+would be called. That way I could check which state It would be in and what state it transitions to. I also used
+the onEvent at first to make sure that it was transitioning to the correct state. The final use of eventspec is
+the printlog function. I put that function inside my printStatus() function. This function prints the settings of
+kwic, the ignored words and, the current string. Then it calls printLog() to display the current state and the 
+steps the program took to get there. I decided to use the printLog function rather than the trace and the state
+function in the eventspec program because it was easier to use and incoporate in my class. I did not really need
+the state function because whatever my program did it always returned to the start state, so it would not be very
+helpful.

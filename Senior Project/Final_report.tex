@@ -1,0 +1,236 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{lscape}
+\usepackage{pgfgantt}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{import}
+%\usepackage{pdfpages}
+%\usepackage{caption}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+\geometry{textheight=9.5in, textwidth=7in}
+
+\def \CapstoneTeamName{		Ebola Team}
+\def \CapstoneTeamNumber{		34}
+\def \GroupMemberOne{			Claude Maimon}
+\def \GroupMemberTwo{			Brian Lee Huang}
+\def \GroupMemberThree{			Bianca Beauchamp}
+\def \CapstoneProjectName{		Ebola Prediction Model}
+\def \CapstoneSponsorCompany{	Professor Bill Smart}
+
+
+\def \DocType{		Final Report
+	%Requirements Document
+	%Technology Review
+	%Design Document
+	%Progress Report
+}
+
+\newcommand{\NameSigPair}[1]{\par
+	\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+	\par\vspace{-12pt} \textit{\tiny\noindent
+		\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+	\begin{titlepage}
+		\pagenumbering{gobble}
+		\begin{singlespace}
+			%\includegraphics[height=4cm]{coe_v_spot1}
+			\hfill 
+			% 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+			%\includegraphics[height=4cm]{CompanyLogo}   
+			\par\vspace{.2in}
+			\centering
+			\scshape{
+				\huge CS Capstone \DocType \par
+				{\large\today}\par
+				\vspace{.5in}
+				\textbf{\Huge\CapstoneProjectName}\par
+				\vfill
+				{\large Prepared for}\par
+				\Huge \CapstoneSponsorCompany\par
+				\vspace{5pt}
+				{\large Prepared by }\par
+				Group\CapstoneTeamNumber\par
+				% 5. comment out the line below this one if you do not wish to name your team
+				\CapstoneTeamName\par 
+				\vspace{5pt}
+				{\Large
+					\NameSigPair{\GroupMemberOne}\par
+					\NameSigPair{\GroupMemberTwo}\par
+					\NameSigPair{\GroupMemberThree}\par
+				}
+				\vspace{20pt}
+			}
+			\begin{abstract}
+			There is currently no way to take a persons temperature without being within a close proximity to their bodies, putting health care workers at a great risk of infection. The purpose of this project is to reduce this risk by creating a device that quickly takes a persons core body temperature from a distance using a thermal camera. This report discusses this project, the process of creating it and the outcome. 
+			\end{abstract}  
+		   
+		\end{singlespace}
+	\end{titlepage}
+
+	\newpage
+	\pagenumbering{arabic}
+	\tableofcontents
+	% 7. uncomment this (if applicable). Consider adding a page break.
+	%\listoffigures
+	%\listoftables
+	\clearpage
+	
+	\section{Introduction}
+	
+	This project was requested by Bill Smart, who is working with NIH and Doctors without borders. It was requested to try and use another method for checking patients for Ebola. A new method is important, as Ebola is transferred through bodily fluids, so the less contact doctors and other patients have with each other the less likely it will spread. The team that worked on this project were Claude Maimon, Bianca Beachamp, and Brian Huang. Claude was responsible for working on the image analysis, Bianca was responsible for working on the model creation and testing, and Brian was responsible for the final production mode and user interface. For this project our client was Bill Smart, we had weekly check ins with him and he would provide advice and troubleshooting. We also worked with several graduate students along with our TA Andrew Emmott.
+		
+	\section{Requirements Document}
+	\subsection{Old Requirement Document}
+	\import{sections/}{requirments.tex}
+	\subsection{New Requirements}
+	There were two main things that we changed in the requirement documents. The first was the 40 percent success rate. From the initial research that we did, we found that some previous attempts of this approach produced about 40 percent success rate. When we started the project we thought that we could achieve that success rate. However, as we'll discuss in this report, we ran into many problems with the camera. The camera wasn't calibrated right and it returned bad values. We tried many things to fix it even though it is not in our requirements to try and fix the camera. When first writing this document, we assumed the camera would be working correctly. Since that wasn't the case, we had a hard time collecting good data. That's why we took out the 40 percent  success rate goal. Our client, Bill Smart, agreed with this change. Another change that we made was producing a report and not a research paper as a final product with the code. Our client agreed that there is no need for a research paper. We just needed to produce a report that will help his graduate students in continuing this project. 
+	\subsection{Final Gantt Chart}
+	\begin{center}
+		\begin{landscape}
+			\begin{ganttchart}[
+				vgrid,
+				x unit=0.75cm,
+				y unit chart=1cm,
+				hgrid style/.style=red
+				]{24}{24}
+				\gantttitle{Ebola Virus Project Process}{24} \\
+				\ganttbar{Processing thermal image}{1}{15} \\
+				\ganttbar{Process data from pixels}{2}{15} \\
+				\ganttbar{Collecting Data}{12}{18} \\
+				\ganttbar{Analyzing data}{12}{13} \\
+				\ganttbar{Mathematical model}{13}{17} \\
+				\ganttbar{Testing and result analyzing}{18}{19} \\
+				\ganttbar{Program for graduate students}{19}{21} \\
+				\ganttlink{elem0}{elem1}
+				\ganttlink{elem1}{elem3}
+				\ganttlink{elem2}{elem3}
+				\ganttlink{elem3}{elem4}
+				\ganttlink{elem4}{elem5}
+				\ganttlink{elem5}{elem6}
+			\end{ganttchart}
+		\end{landscape}
+	\end{center}
+	
+	\section{Design Document}
+	
+	\subsection{Original Design Document}
+	\import{sections/}{Design_Document.tex}
+	\subsection{New Design Changes}
+		The main change that we did in the design document is the same as the requirement change. We changed the final product from a research paper to a detailed report. Our client agreed that there is no need for a research paper. Instead, we produced a detailed report that can assist someone in continuing our project in the future. 
+	
+	\section{Tech Reviews}
+	\subsection{Brian's Tech Review}
+	\import{sections/}{Brian_Huang_Tech_Review.tex}
+	\subsection{Claude's Tech Review}
+	\import{sections/}{Claude_tech.tex}
+	\subsection{Bianca's Tech Review}
+	\import{sections/}{Binaca_tech.tex}
+	
+	\section{Weekly Blog Posts}
+	
+	\subsection{Brian}
+	\import{sections/}{Brian_weekly.tex}
+	
+	\subsection{Claude}
+	\import{sections/}{Claude_weekly.tex}
+	
+	\subsection{Bianca}
+	\import{sections/}{Bianca_weekly.tex}
+	\newpage
+	\section{Final Poster}	
+		Our final poster as it was presented at the Undergraduate Engineering Expo. 	
+		\begin{figure}[!hb]
+			\centering
+			\includegraphics[width=\textwidth, height=20cm]{group34poster.eps}
+			\caption{Our final poster}
+		\end{figure}
+
+	\section{Project Documentation}
+	\import{sections/}{documentation.tex}
+	
+	\section{Recommended Technical Resources}
+		\subsection{Image Processing}
+		During the project we received a lot of assistance from our client's graduate students: Austin Whitesell and Chris Wayne. They helped us with setting up the camera.   
+		\begin{itemize}
+			\item \textbf{Python Imaging Library Handbook:}    \url{http://effbot.org/imagingbook/pil-index.htm}
+			\item \textbf{Open-CV Python Tutorial:}    \url{https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_tutorials.html}
+		\end{itemize}
+		\subsection{model}
+		\begin{itemize}
+			\item \textbf{Linear Regression Tutorial:}    \url{http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html}
+			\item \textbf{Linear Regression Example:}    \url{http://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html}
+			\item \textbf{Python Linear Regression:}    \url{http://bigdata-madesimple.com/how-to-run-linear-regression-in-python-scikit-learn/}
+		\end{itemize}
+	\section{Conclusions and Reflections}
+	
+	\subsection{Brian}
+	For this project I worked on the production mode, the user interface and the evaluation method. The production mode required the uses of a linux machine, so I learned how to install linux onto my computer. It was a lot of trial and error messing with the BIOS, but I finally got it to work. I also learned about the Receiver Operating Characteristic curve, what it does, what it looks for and how it works. This was used to create the evaluation method of the project. This piece is working, but it just needs data to be used. 
+	
+	After working on this project I learned that project work can be even more difficult than working alone, but if done correctly it can also be much easier. If the team communicates and cooperates with each other, the project can be done quickly and easily as there are more people thinking about the same problem, effectively doubling or tripling the problem solving power. However the key here is good communication and cooperation, if these are bad then the group work can become much more difficult than if worked on my a single person. The management of the project works exactly the same way, where communication and cooperation are extremely essential. Without communication one person ends up doing all of the work by themselves, where other group members may have been willing to share the load. Overall working in teams is definitely more difficult than working alone. It requires a lot of juggling of other group members workload and schedules. It becomes a balancing act of trying to keep everyone as happy as possible, as having a disgruntled team member can cause many problems.
+	
+	If I could do this whole project over again I would definitely start everything earlier than I did. Although everything got done on time, starting everything earlier would help reduce the stress we had over the three terms, as we would have more room to work on it. 
+	
+	\subsection{Claude}
+	In this project, I worked on image process. Through the process, I improved my python skills. I haven't used Python much before and it was a great opportunity to learn more about the language. I also used an IDE (PyCharm) to debug my program. It showed me how easy it is to debug with the right tool. Lastly, I learned a lot about GitHub. I've used it before but through this project, I learned how to really use it. Other than these tools I also learned a lot about communicating with teammates, clients, and professors. I was kind of the manager of the team and I learned a lot from that experience. Before this project, I used to always be the quiet person who just follows. Now I'm much more confident in sounding my opinion and leading a team.  
+	
+	This project taught me a lot about project work. All the paperwork that we've done Fall term really helped to organize the project. The organization made our requirements clear and helped us set a timeline. This timeline was a good start but of course, it changed a lot over the course of the project. I've learned a lot from our client, Professor Bill Smart. He showed us that many times a quick email will be better than a 30 minutes appointment. He also reassured us when things weren't going the way they were supposed to. He gave us a chance to experience a real industry project. 
+	
+	As for teamwork, I've learned that a project can be easy working with the right people but can be difficult if the team doesn't work well together.  A team project can give people the opportunity to step up or to push their work aside until someone else picks it up. Communication is really important in a team project. If I could do this year all over again, I would probably try to create a team and choose a project instead of leaving it to chance. I would also try and make a schedule for every assignment, so they won't be done last minute. Lastly, I would try to have scheduled team meetings every week.
+	
+	
+	\subsection{Bianca}
+	
+	I learned a lot of technical information this term about different types of models, when to use them and how to evaluate them. Professor Smart also taught me about the library scikit-learn that is typically used to create and test different models. I ended up using this library and learning to work with it to create the model for this project. I learned how to apply a linear regression to a real life application. Also, even though I didn't get to implement it due to the mechanical team running out of time, I learned how to add complexity to potentially create a better model. I also learned about using sum of squared error as well as leave one out cross validation as methods to evaluate models. 
+	
+	Not all the information I learned this term was technical. I learned that sometimes unexpected things happen that can set a project back and when that happens you have to try to make the best of the situation. Our camera did not calibrate correctly so we could not get a lot of good, accurate data for me to use in the model. I just had to do the best I could to create a model that worked with the data that I did have.
+	
+	I also learned that working on a large project can be daunting and challenging, especially when you don't know a lot about the topic. However, I found that it was a very rewarding challenge to overcome. With a large project, I learned that it needs to be managed by creating a schedule so it doesn't become too overwhelming. I learned that working in a team is helpful when tackling a large project because the work could be split up. But in some ways, it is also unhelpful and can make things more difficult because not everyone is always on the same page. This can create another challenge but it is a challenge that is worth overcoming and using to grow as a person. 
+	
+	If I could do it all over again I would probably try and create a stricter schedule so that everything would get done ahead of time. This way if anything went wrong there would be time to fix it. Group dynamics is very important in a large project so I think it would have been nice to have created my own group and come into the class with a project and team picked out. However, I also like how the challenge of not having a perfect group and project helped me grow as a person.
+	\newpage
+	\section{Appendix 1: Essential Code Listings}
+		\import{sections/}{Appendix_1.tex}
+	\newpage
+	\section{Appendix 2}
+		\import{sections/}{Appendix_2.tex}
+	\newpage
+	
+	
+	\bibliographystyle{IEEEtran}
+	\bibliography{mybib}
+	
+\end{document}

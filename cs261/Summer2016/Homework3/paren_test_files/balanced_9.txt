@@ -1,0 +1,16 @@
+#include "unit_test.h"
+
+#include <stdbool.h>
+#include <stdio.h>
+
+void _unit_test_(const char* code_str,bool test,int pts,int* total_p,int* poss_p) {
+	*poss_p += pts;
+	printf("Testing:\t%s ...\t",code_str);
+	if (test) {
+		*total_p+=pts;
+		printf("PASS\t(+%d)",pts);
+	} else {
+		printf("FAIL\t(+0)");
+	}
+	printf("\t%d/%d\n",*total_p,*poss_p);
+}

@@ -1,0 +1,124 @@
+#!/bin/bash
+
+#Error if there are too many arguments
+if [[ $# > 2 ]];
+then
+	>&2 echo "Error. Too many arguments."
+	>&2 echo "Usage: stats {-rows|-cols} [file]"
+	exit 1
+
+#error if the file is unreachable
+elif [[ ! -r $2 ]]
+then
+	>&2 echo "File is unreachable."
+	>&2 echo "Usage: stats {-rows|-cols} [file]"
+	exit 1
+
+#error if the file is empty
+elif [[ ! -s $2 ]]
+then
+	>&2 echo "File is empty."
+	>&2 echo "Usage: stats{-rows|-cols} [file]"
+	exit 1
+
+#Row Calculation
+elif [[ $1 == -r* ]];
+then
+	#outputing the headers
+	echo "calculating row stats"
+	echo -e "Average\tMedian"
+	while read myLine
+	do
+		#initializing variables
+		count=0
+		sum=0
+		for i in $myLine
+		do
+			sum=`expr $sum + $i`
+			count=`expr $count + 1`
+		done
+
+		#Taking data from myLine and turning tabs into spaces, then spaces into newlines.
+		#Running all of that through the sort function, then turning all the new lines
+		#back into spaces
+		sorted=$(echo "$myLine"| expand | tr ' ' '\n'| sort -n | tr '\n' ' ')
+
+		#Creating a sorted array, finding the length and finding the median.
+		sorted_array=($sorted)
+		length=${#sorted_array[@]}
+		median=${sorted_array[length/2]}
+		
+		#Finding the average and then outputting the mean and median.
+		mean=`expr $sum / $count`
+		echo -e "$mean\t$median"
+	
+	done < $2
+	exit 0
+	
+#Column Calculation
+elif [[ $1 == -c* ]];
+then
+	#creating a placeholder list which will hold all the values into one array.
+	#Also creating a counter variable that counts the number of rows.
+	echo "calculating column stats"
+	numrows=0
+	list=""
+	while read myLine
+	do
+		#reading all the numbers into one big list
+		((numrows++))
+		list+=$myLine
+		list+=' '
+	done < $2
+
+	#Taking the list and then making sure everything is seperated by a space.
+	list=$(echo "$list" | tr ' ' '\t' | tr '\t' ' ')
+
+	#Making the list into an array.
+	list=($list)
+
+	#finding the total length of the array.
+	len=${#list[@]}
+
+	#finding the number of columns by dividing the length by rows.
+	numcols=`expr $len / $numrows`
+
+	#initializing arrays for mean and medians.
+	means=()
+	medians=()
+
+	#Calculating the mean and median
+	for ((k=0;k<$numcols;k++))
+	do
+		#creating placeholder variables.
+		sum=0
+		sortlist=""
+
+		#finding the sum of a column by skiping over numbers in the total list. It skips numbers
+		#based on the length of the rows, which happens to also be number of columns.
+		for ((j=0;j<$len;j+=$numcols))
+		do
+			sum=`expr $sum + ${list[k+j]}`
+
+			#adding the numbers from the column into a list to be sorted.
+			sortlist+=${list[k+j]}' '
+		done
+		means+=(`expr $sum / $numrows`)
+
+		#Sorting the column by replacing all spaces with newlines and then back again after being sorted.
+		#then places the numbers into an array to find the median.
+		sorted=$(echo "$sortlist" | tr ' ' '\n' | sort -n | tr '\n' ' ')
+		sorted_array=($sorted)
+		median=${sorted_array[numrows/2]}
+		medians+=($median)
+	done
+
+	#Printing the values with the correct headers.
+	echo "Averages"
+	printf "%s\t" ${means[@]}
+	echo
+	echo "Medians"
+	printf "%s\t" ${medians[@]}
+	echo
+	exit 0
+fi

@@ -1,0 +1,6 @@
+This is a test
+ROOM NAME:Hallway
+CONNECTIONS: 1: Storage
+CONNECTIONS: 2: Greenhouse
+CONNECTIONS: 3: Bathroom
+ROOM TYPE: START_ROOM

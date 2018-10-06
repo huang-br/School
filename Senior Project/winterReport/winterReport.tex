@@ -1,0 +1,96 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage[utf8]{inputenc}
+
+
+\title{%
+  Requirements \\
+  \vspace{0.4cm}
+  \large Winter Report \\
+  \vspace{0.4cm}
+  \large CS 462, Winter 2018, Group 34\\
+    }
+\author{Brian Huang}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	This term was mostly dedicated to working on the camera. After receiving the camera we started to test it and we noticed many problems with it, such as not returning any values that are even close to accurate and how we would use the software to grab image with our code. A graduate student Chris helped us try and fix these problems, he tried his best to fix the temperature problem but the camera still gives bad values. However he was able to write some code that allowed us to interface with the camera, so we are now able to collect some data by just pressing a button rather than going through the software. The overall group dynamic for our group was okay this term. Claude and I worked well together, we went to all the meeting for the camera together and communication was good between us. However working with Bianca was somewhat frustrating at times because communication with her would take a long time, and her code was never posted until the very end of the term. This made it hard to gauge where we were and what needed to be done. Since my part relies on all the parts to be done it was important that I atleast have some understanding of how the code works and what the inputs and outputs would be, but because her code was never posted I couldn’t really work on it.
+\end{abstract}
+
+\newpage
+
+\newpage
+\section{Overview}
+The goal of this project was to create a computational model that can detect if a person is symptomatic with ebola by just using data from a thermal camera. The goal of this was to have it be a fairly quick process, where a person could walk through a doorway and then have a directional light flash, then have them be directed to a room in that direction. The goal of this was to quarantine any potentially sick patients to reduce the potential spread of Ebola.
+
+For this project we split the project into three different pieces. The processing the the thermal image, the creating and testing of the model, and the evaluation of the model. The thermal image processing was assigned to Claude, the model creation and testing was assigned to Biannca, and the Evaluation, user interface and production mode was assigned to me. 
+
+Over the last two term we have had many problems with this project. During the fall we had issues and concerns with this project being way to difficult for our skill level, and in the winter we had many issues with the camera. When we first tested the camera it was producing values that were nowhere near accurate so we spent a large period of time trying to fix the issues, and find out where the problem was coming from. We also had concerns with using the software within our code and how we would set all the different setting without using the software and just trying to set them within our software. A graduate student was assigned to help us with this task and we were able to solve the software issues with his code.
+
+Currently the image analysis portion of the project is complete, however the images still produce temperatures that aren’t accurate. The images we took also did not use the rig that was built by the mechanical team, so we simulated it using a tripod. We wrote our code based on the images we took using the tripod, so in the end we may need to tweak it a little bit based on the dimensions of the actual set up the mechanical team built.
+
+I do not know the full status of the modeling portion of this project, but I think it is mostly done. I think that it can build a model but it is heavily reliant on data. She is hesitant to actually build anything and say it is complete as the data we produce is not very accurate, so the model that will be built will not be completely accurate. I think she plans on testing other methods of creating a model, to see which is more accurate.
+
+The evaluation portion of this project is mostly complete. It can produce a correct looking receiver operating characteristic curve, but I want to test it against a python library so I can confirm that it is doing what it is supposed to be doing. The user interface and the production mode have not been worked on directly as both of them require all the pieces of the project to be mostly done. However the user interface is planned to just use command line and command line arguments. This is what we have been doing for the thermal image analysis and the roc curve program. The production mode should not take too long to produce after all the pieces are done. I am waiting to start the production mode as it requires all the pieces to be finished. I am waiting so I can verify all the inputs and outputs of each piece so I can pieces them all together properly and make sure there are no mismatching inputs.
+
+\section{Weekly summary}
+\subsection{week 1}
+Nothing much happened this week. This week was mostly getting things together and preparing to create the project. We have a camera, some images and csv files so we are ready to start on the project. We also need to schedule a time where we can meet with Bill and Andrew.
+
+\subsection{week 2}
+We are slowly working on the project by creating the image processing piece by piece. Claude created the bulk of the program which analyzes the pixels in the images. I created something that creates a histogram out of the csv file, as well as a short program that detects the type of file. The plan is to put all these pieces together to run on both csv and tiff files.
+\subsection{week 3}
+We have the image analysis mostly complete. I created a fake data generator for any portion in the future that needs data. I have also created a reader to go with that data to make it easy to use in python. For the evaluation portion I have decided to look into something called Receiver operating characteristic. This is something that can minimize false positives, so it might also be able to minimize false negatives.
+\subsection{week 4}
+Not much progress on the project was made this week. This week most mostly a lot of planning on what we need to do, and what we needed from the mechanical team. We made some progress on the evaluation portion of the project, and found the a receiver operating characteristic curve would be helpful in evaluating the model.
+ 
+We also worked with the camera a little bit. We found that the temperatures that it was producing seemed to be very off, so we need some sort of constant temperature to let the camera have something to compare to.
+
+\subsection{week 5}
+This week we were mostly working with the camera to see if we could fix the issue with the recorded temperature being too high. We tried multiple different reference temperature, and all of the failed to work. We however found that there was a folder supposed to be used for calibration, and found that when we used that folder the camera was only off my a couple of degrees. We plan on taking more pictures to homely have the camera calibrate correctly.
+\subsection{week 6}
+This week was dedicated to working on the progress report. Claude and I recorded our parts together. Still not very much progress with the Camera.
+\subsection{week 7}
+Not much was done this week besides testing the camera with the coffee. We were testing if the camera was adjusting to the hottest thing in the room, and the results of the test was that it does adjust. This makes calibrating the camera difficult, as it can only detect things in the range of temperature around the hottest thing it detects.
+\subsection{week 8}
+This week was super busy for me, so not much got accomplished this week. Claude and I met with Chris' to look at his code again and to see how it works.
+
+\subsection{week 9}
+This week we met with Chris again to go over his code. He wrote his code assuming that we have a Linux machine, so our task is to get one to take data with his code. I am going to try and get a Linux installed on my laptop so we can finally collect data with the camera. Chris' code seems to have better calibration than the window version, so we are more comfortable taking images with it.
+
+\subsection{week 10}
+We were finally able to gather some data from the camera. To do this we used Chris' code to grab some frames from the camera while it took some video We had to modify it to take 45 frames instead of 10000. We also changed it so it only kept the last five frames as it sometimes need to warm up, and during this period it produces garbage frames. To do this we needed a linux computer, so I installed Ubuntu on my laptop over the weekend to have a computer that could use the code. I also wanted to start piecing all the piece of our project together so I can start working on the production mode, and the user interface. However I am still missing the model code so I can't create it yet. I looked at the requirements for the report and the presentation. I plan on working on the report this weekend, and the presentation on Tuesday. I also finally fixed my ROC curve program with the help of Andrew. I also modified my data generator a little bit so I can force a certain accuracy in the data that is produces.
+
+\section{Team Evaluation}
+For our group we mostly worked on our own parts. I wrote all of the code for the evaluation portion, Bianca wrote all the code for the model and Claude wrote all of the code for the image analysis. However dealing with the camera and the images was such a cumbersome task that I helped claude with this portion. I tested the camera with her during the first couple of weeks to determine how well the camera was functioning. We spent multiple weeks testing camera, and the result was that the camera had calibration issues.
+
+Claude’s contribution was good and what I expected. She worked on her part and asked for help when she needed it. Nothing was ever delayed and I was always updated with her progress, as I helped her work on her part a little bit. Dealing with the camera was a large issue in itself so I also helped her work through the camera issues. After getting the camera issues mostly sorted out she completed the image analysis portion of the project.
+Bianca’s contribution is hard to gauge, as she never communicated with us. She was responsible for creating the model, which was one of our big problems during the fall term. During the beginning of the term we also did not have any communication with Andrew, who was suppose to help guide us with the model. His absence made it difficult to make any meaningful progress on the model. After he came back it seemed like Bianca made progress and had something working, but she never posted anything to github even after I asked multiple times. This made it really hard to tell if any progress was made on the model, and I just had to trust that there was something. She also did meet with the group as often as I feel like she should. Over this term Clade and I were meeting at least once a week to work on the camera, so we knew about each others progress, but Bianca was never present so her progress was mostly unknown to us.
+
+I feel like my contribution to the project is somewhat minimal at this point. I was tasked with the evaluation, user interface and the production mode. These three pieces seemed like miscellaneous pieces of the project to me and seemed like things meant to be created at the end, where the project is mostly complete. I completed the evaluation, but no direct work was done on the user interface and the production mode. The idea behind the user interface was to just use command line, so the basis of it was in both the evaluation program, and the image analysis program. However the final user interface should be created with the production mode, which is simply piecing everything together. I want to wait till everything is mostly working before trying to piece everything together. I am still waiting on the model code to be posted onto github, but otherwise I am ready to work on it. I also help work on the image analysis a little, as I help write a small portion of the image analysis code as well as help tested the camera. A graduate student also helped us write code to help us interface with the camera without its software. However his code required a linux machine, so I also installed linux on my laptop to be able to take images. I was also responsible for editing the progress report presentation all three times. Overall I feel like my contribution to the project has mostly been miscellaneous jobs, and nothing really substantial for the actual project.
+
+\section{Retrospective }
+
+\begin{tabular}{|p{5cm} | p{5cm} | p{5cm}|} 
+	\hline
+	positives  & deltas  & actions \\ [0.5ex] 
+	\hline\hline
+	Graduate student help with interfacing with the camera. & Need to determine the dimensions of the mechanical teams rig to take pictures that will have the correct “Format” & Look at the mechanical teams rig and take pictures with it.\\
+	\hline
+	Mechaincal teams rig is finished so we can take pictures. & & We need to take picture using their rig. \\
+	\hline
+	Got started on the user interface while building other pieces of the project. & Need to finish working on the final user interface. & Work on the final user interface when all parts are mostly done. \\
+	\hline  
+
+	
+\end{tabular}
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{mybib}
+
+
+\end{document}

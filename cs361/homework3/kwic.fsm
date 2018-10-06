@@ -1,0 +1,19 @@
+begin: start
+
+state: start
+callAddText -> addText
+callIndex -> index
+callReset -> reset
+callListPairs -> listPairs
+
+state: addText
+textAdded -> start
+
+state: index
+returnIndex -> start
+
+state: reset
+resetString -> start
+
+state: listPairs
+returnListPairs -> start

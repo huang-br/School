@@ -1,0 +1,28 @@
+To imporve the run time of kwic I tried many different methods. I first tried to improve speed by creating multiple threads.
+When I implemented multiple threads to handle shifting the lines and list pairs it did not improve my run time at all. In
+fact it actually decreased my run time. I looked it up and it was due to the nature of pythons threadming module and only
+allowing one thread to actually run at a time. My next idea was to implement multiprocessing instead. I however got the same
+result with multiprocessing. The overhead of the creation of other processes really slowed down the program instead of speeding
+it up. I also ran into issues with passing data back and fourth between different processes so that idea also would not work.
+I then decided to look at the code and see what I could change to improve run time. For the periodsToBreaks I changed it from a
+state machine into a simpler split function that will split on a period and a space after it by making that the delimeter in the
+split function. Another change I made was to simply moved the pairing process into a different function. This was not a choice I
+made to increase speed, but to increase the ease of modifiying how I did list pairs. I also decided not to change list pairs
+becuase I could not think of any other way to create the list pairs function. I also noticed that the pair function would
+call the clean function many times, so I attempted to speed up the process by passing the whole list into the clean function
+and then passing the cleaned list back into the pair function. This in fact did not speed up the process because it would call
+the function more times than it was actually needed. My last change was that I changed flattening and shifting into generators
+instead of list comprehention. I chose to make this change because generators do not need to store any information. They
+instantly return their data when called, unlike list comprehention which has to generate the whole list first.
+This increased my run time only when listpairs are on because it has many more things to process. This change however decreased
+my run time when listpairs are not true. I have no idea as to why this change would slow down kwic but it does. 
+
+To test each of my experiement I created multiple little text documents to run them against. I would also sometimes use
+chesterton and ulysses when my experiments were solidified. My documents comprised of a short paragraph that I wrote and
+then copy and pasted multiple times and the first 20k likes of chesterton.
+
+Besides parallel programing I did not have very many ideas that could increase run time. I did very many hours of research
+and found that threads were locked by python GIL and making processes had huge overheads that it was not worth it. I may
+have been creating processes wrong so that may be another reason it did not work as well as it should have. The aspects of
+kwic that made it hard to increase run time was mainly that I could only think of one way to do each step. I could not think
+of any quicker more efficent ways to shift the lines or to do the list pairs.

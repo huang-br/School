@@ -1,0 +1,72 @@
+#include "stack.h"
+
+#include <stdlib.h>
+#include <stdbool.h>
+#include <assert.h>
+
+/*A basic node used internally by the stack.*/
+typedef struct node {
+	TYPE value;
+	struct node* next;
+} node;
+
+/*The linked version of the stack only needs to know where its first node is.*/
+typedef struct stack {
+	node* top;
+} stack;
+
+/*Dynamically allocate memory to a stack*, initialiaze whatever fields you
+ * need to, (including dynamically allocating more memory if you need to),
+ * and return the pointer.*/
+stack* new_stack() {
+	stack* to_return = malloc(sizeof(stack));
+	(*to_return).top = NULL;
+	return to_return;
+}
+
+/*Return true if the stack pointed to by 'stack_p' has no elements in it,
+ * false otherwise.*/
+bool is_empty(stack* stack_p) {
+	assert(stack_p != NULL);
+	return stack_p->top == NULL;
+}
+
+/*Put element 'to_push' on top of the stack pointed to by 'stack_p'*/
+void push(stack* stack_p, TYPE to_push) {
+	assert(stack_p != NULL);
+	node* new_top = malloc(sizeof(node));
+	new_top->value = to_push;
+	(*new_top).next = stack_p->top;
+	(*stack_p).top = new_top;
+}
+
+/*Return the element on top of the stack pointed to by 'stack_p'*/
+TYPE top(stack* stack_p) {
+	assert(!is_empty(stack_p));
+	return (*(stack_p->top)).value;
+}
+
+/*Remove the element on top of the stack pointed to by 'stack_p' and return
+ * it.*/
+TYPE pop(stack* stack_p) {
+	TYPE to_return = top(stack_p);
+	node* old_top = stack_p->top;
+	stack_p->top = old_top->next;
+	free(old_top);
+	return to_return;
+}
+
+/*Free all dynamically allocated memory associated with the stack pointed to
+ * by 'stack_p' : YOU MAY LEAVE THIS BLANK FOR FULL CREDIT.
+ * Doing this correctly will yield extra credit.*/
+void free_stack(stack* stack_p) {
+	if (stack_p != NULL) {
+		node* next_to_free = stack_p->top;
+		while (next_to_free != NULL) {
+			node* current = next_to_free;
+			next_to_free = next_to_free->next;
+			free(current);
+		}
+	}
+	free(stack_p);
+}
